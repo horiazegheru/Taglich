@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Home Page</title>
+</head>
+<h3>TAGLICH - Your day by day worker</h3>
+<h2>Welcome, worker {{ username }}</h2>
+<h3><a href='/workerJobs'>My Jobs</a></h3>
+<h3><a href='/workerHistory'>History</a></h3>
+<h3><a href='/logout'>Logout</a></h3>
+
+<body>
+    <ul name="jobs">
+      {% for job in jobs %}
+        <li name="{{ job.id }}" value="{{ job }}">
+            <form action="{{ url_for('assign_job') }}" method="POST">
+                <input type="hidden" name="list_index" value="{{ job.id }}"/>
+                <div>Requester Name {{ job.client_username }}</div>
+                <div>Requester Address {{ job.address }}</div>
+                <div>Requester Description {{ job.description }}</div>
+
+                <button type="submit">Accept request</button>
+            </form>
+        </li>
+      {% endfor %}
+    </ul>
+
+</body>
+</html>

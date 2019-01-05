@@ -1,0 +1,24 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Client Home Page</title>
+</head>
+<h3>TAGLICH - Your day by day worker</h3>
+<h2>Welcome, client {{ username }}</h2>
+<h3><a href='/clientJobs'>My Jobs</a></h3>
+<h3><a href='/clientHistory'>History</a></h3>
+<h3><a href='/logout'>Logout</a></h3>
+
+<body>
+<form action="/clientHomePage" method="POST">
+        <select name="job_type">
+		      {% for job_type in job_types %}
+		      	<option value="{{ job_type }}">{{ job_type }}</option>
+		      {% endfor %}
+        </select>
+        <input type="address" name="address" placeholder="Address">
+        <input type="description" name="description" placeholder="Description">
+
+        <input type="submit" value="Request worker">
+</form>
+</body>
+</html>

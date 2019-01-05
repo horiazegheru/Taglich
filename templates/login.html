@@ -1,0 +1,18 @@
+{% block body %}
+<head>
+</head>
+<h3>TAGLICH - Your day by day worker</h3>
+<h3>Sign in</h3>
+<h3>
+    Please enter your user ID and Password in
+    the sign in area below. If you are not curently
+    registered with our site please
+    <a href="http://127.0.0.1:5000/register">register now</a>
+</h3>
+
+<form action="/login" method="POST">
+  <input type="email" name="email" placeholder="Email">
+  <input type="password" name="password" placeholder="Password">
+  <input type="submit" value="Sign In">
+</form>
+{% endblock %}

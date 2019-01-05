@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<h3>TAGLICH - Your day by day worker</h3>
+<h3>Register</h3>
+<body>
+    <form action="/register" method="POST">
+        <input type="username" name="username" placeholder="Username">
+        <input type="email" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="repassword" placeholder="Re-enter Password">
+        <br>
+        <input type="firstname" name="firstname" placeholder="First Name">
+        <input type="lastname" name="lastname" placeholder="Last Name">
+        <input type="date" name="dob" min="1950-01-02" placeholder="Date of Birth">
+        <input type="description" name="description" placeholder="Your description">
+        <input type="phone_nr" name="phone_nr" placeholder="Phone number">
+        <select name="account_type">
+            <option value="Client">Client</option>
+            <option value="Worker">Worker</option>
+        </select>
+
+        <select name="job_type">
+		      {% for job_type in job_types %}
+		      	<option value="{{ job_type }}">{{ job_type }}</option>
+		      {% endfor %}
+        </select>
+
+        <input type="submit" value="Sign In">
+    </form>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<h3>TAGLICH - Your day by day worker</h3>
+<h2>Welcome, worker {{ username }}. This is your work history</h2>
+<h3><a href='/'>Home</a></h3>
+<h3><a href='/logout'>Logout</a></h3>
+<body>
+    <ul name="jobs">
+      {% for job in jobs %}
+        <li name="{{ job.id }}" value="{{ job }}">
+            <div>Requester Name {{ job.client_username }}</div>
+            <div>Requester Address {{ job.address }}</div>
+            <div>Requester Description {{ job.description }}</div>
+        </li>
+      {% endfor %}
+    </ul>
+</body>
+</html>
