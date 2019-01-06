@@ -16,4 +16,4 @@ class User:
 		self.job_type = job_type
 
 	def __str__(self):
-		return str(self.id) + " " + self.username + " " + self.firstname + " " + self.lastname + " " + str(self.dob) + " " + self.description + " " + self.phone_nr + " " + self.account_type + " " + self.job_type
+		return str(self.id) + " " + self.username + " " + self.firstname + " " + self.lastname + " " + str(self.dob) + " " + self.description + " " + self.phone_nr + " " + self.account_type

@@ -12,7 +12,7 @@ users_index = 0
 jobs_index = 0
 
 # aici trebuie puse la inceput toate
-job_types = ["Babysitter", "Plumber", "Lautar", "Altceva"]
+job_types = ["Dadaca", "Instalator", "Electrician", "Gradinar", "Menajera", "Altele"]
 
 @app.route('/')
 def index():
@@ -93,6 +93,7 @@ def register():
             session['logged_in'] = True
             session['username'] = user.username
             session['account_type'] = user.account_type
+            session['job_type'] = user.job_type
 
             print(session['username'])
 
@@ -242,20 +243,20 @@ if __name__ == '__main__':
     app.secret_key = os.urandom(12)
 
     # am bagat 3 useri si 3 joburi ca sa fie, daca mai vedeti erori, ziceti
-    global_dict['users'].append(User(0, 'client1', 'cl1@local', '123', 'cl', '1', None,
+    global_dict['users'].append(User(0, 'client1', 'cl1@local.com', '123', 'cl', '1', None,
                                      'desc', 'phone', 'Client', None))
 
-    global_dict['users'].append(User(1, 'client2', 'cl2@local', '123', 'cl', '2', None,
+    global_dict['users'].append(User(1, 'client2', 'cl2@local.com', '123', 'cl', '2', None,
                                      'desc', 'phone', 'Client', None))
 
-    global_dict['users'].append(User(2, 'worker1', 'wo1@local', '123', 'wo', '1', None,
-                                     'desc', 'phone', 'Worker', 'Plumber'))
+    global_dict['users'].append(User(2, 'worker1', 'wo1@local.com', '123', 'wo', '1', None,
+                                     'desc', 'phone', 'Worker', 'Instalator'))
 
     users_index = 3
 
-    global_dict['jobs'].append(Job(0, 'Plumber', 'addr1', 'desc1', 'client1'))
-    global_dict['jobs'].append(Job(1, 'Plumber', 'addr2', 'desc2', 'client2'))
-    global_dict['jobs'].append(Job(2, 'Lautar', 'addr3', 'desc3', 'client2'))
+    global_dict['jobs'].append(Job(0, 'Instalator', 'addr1', 'desc1', 'client1'))
+    global_dict['jobs'].append(Job(1, 'Instalator', 'addr2', 'desc2', 'client2'))
+    global_dict['jobs'].append(Job(2, 'Dadaca', 'addr3', 'desc3', 'client2'))
     jobs_index = 3
 
     app.run(debug=True)

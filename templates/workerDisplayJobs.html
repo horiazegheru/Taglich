@@ -2,28 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Display Jobs</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
 </head>
-<h3>TAGLICH - Your day by day worker</h3>
-<body>
-<h2>Welcome, worker {{ username }}. These are your assigned jobs:</h2>
-<h3><a href='/'>Home</a></h3>
-<h3><a href='/workerHistory'>History</a></h3>
-<h3><a href='/logout'>Logout</a></h3>
-
-    <ul name="jobs">
-      {% for job in jobs %}
-        <li name="{{ job.id }}" value="{{ job }}">
-            <form action="{{ url_for('cancel_job') }}" method="POST">
-                <input type="hidden" name="list_index" value="{{ job.id }}"/>
-                <div>Requester Name {{ job.client_username }}</div>
-                <div>Requester Address {{ job.address }}</div>
-                <div>Requester Description {{ job.description }}</div>
-
-                <button type="submit">Cancel Job</button>
-            </form>
-        </li>
-      {% endfor %}
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">TAGLICH</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/workerHistory">History</a></li>
+      <li><a href="#">Page 2</a></li>
     </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a>Welcome {{ username }}</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+<div class="row header">
+        <div class="col-md-3">Requester Name </div>
+        <div class="col-md-3">Requester Address </div>
+        <div class="col-md-3">Requester Description </div>
+        <div class="col-md-3">Actions </div>
+    </div>
+    <div class="w-100"></div>
+  {% for job in jobs %}
+    <div class="row" name="{{ job.id }}" value="{{ job }}">
+        <div class="col-md-3"> {{ job.client_username }}</div>
+        <div class="col-md-3"> {{ job.address }}</div>
+        <div class="col-md-3"> {{ job.description }}</div>
+
+        <form action="{{ url_for('cancel_job') }}" method="POST">
+            <input type="hidden" name="list_index" value="{{ job.id }}"/>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-warning">Cancel Job</button>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
