@@ -132,7 +132,7 @@ def client_home_page():
     global_dict['jobs'].append(job)
     print_jobs()
 
-    return render_template('/clientHomePage.html', **{'job_types': job_types})
+    return jobs_by_client()
 
 # worker vede joburile care sunt pt el (gen plumber) si care nu-s Done
 @app.route('/workerHomePage', methods=['GET', 'POST'])
