@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>History</title>
 
@@ -22,7 +23,7 @@
         <li><a href='/clientHistory'>History</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a>Welcome {{ username }}</a></li>
+      <li><a class="welcome">Welcome {{ username }}</a></li>
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
@@ -30,18 +31,26 @@
 
 <div class="container" id="jobs">
     <h2> This is your work history</h2>
-    <div class="row">
-        <div class="col-md-4">Requester Name </div>
-        <div class="col-md-4">Requester Address </div>
-        <div class="col-md-4">Requester Description </div>
-    </div>
-  {% for job in jobs %}
-    <div class="row" name="{{ job.id }}" value="{{ job }}">
-        <div class="col-md-4"> {{ job.client_username }}</div>
-        <div class="col-md-4"> {{ job.address }}</div>
-        <div class="col-md-4"> {{ job.description }}</div>
-    </div>
-  {% endfor %}
+    <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Requester Name</th>
+            <th>Requester Address</th>
+            <th>Requester Description</th>
+          </tr>
+        </thead>
+        <tbody>  
+          {% for job in jobs %}
+           <tr>
+            <div class="row" name="{{ job.id }}" value="{{ job }}">
+                <td> {{ job.client_username }}</td>
+                <td> {{ job.address }}</td>
+                <td> {{ job.description }}</td>
+            </div>
+          </tr>  
+        {% endfor %}
+        </tbody>
+      </table>
 </div>
 </body>
 </html>

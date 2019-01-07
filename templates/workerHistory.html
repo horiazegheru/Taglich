@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>Worker History</title>
 
@@ -17,32 +18,38 @@
       <a class="navbar-brand" href="#">TAGLICH</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/">Home</a></li>
       <li><a href="/workerJobs">My Jobs</a></li>
       <li><a href="/workerHistory">History</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a>Welcome {{ username }}</a></li>
+      <li><a class="welcome">Welcome {{ username }}</a></li>
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
 
 <div class="container">
-<div class="row header">
-        <div class="col-md-3">Requester Name </div>
-        <div class="col-md-3">Requester Address </div>
-        <div class="col-md-3">Requester Description </div>
-    </div>
-    <div class="w-100"></div>
-  {% for job in jobs %}
-    <div class="row" name="{{ job.id }}" value="{{ job }}">
-        <div class="col-md-3"> {{ job.client_username }}</div>
-        <div class="col-md-3"> {{ job.address }}</div>
-        <div class="col-md-3"> {{ job.description }}</div>
-
-    </div>
-    {% endfor %}
+<table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th>Requester Name</th>
+            <th>Requester Address</th>
+            <th>Requester Description</th>
+          </tr>
+        </thead>
+        <tbody>  
+          {% for job in jobs %}
+           <tr>
+            <div class="row" name="{{ job.id }}" value="{{ job }}">
+                <td> {{ job.client_username }}</td>
+                <td> {{ job.address }}</td>
+                <td> {{ job.description }}</td>
+            </div>
+          </tr>  
+        {% endfor %}
+        </tbody>
+      </table>
 </div>
 </body>
 </html>

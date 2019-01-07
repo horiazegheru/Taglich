@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href='https://fonts.googleapis.com/css?family=Palanquin' rel='stylesheet'>
     <meta charset="UTF-8">
     <title>Client Homepage</title>
 
@@ -22,23 +23,56 @@
         <li><a href='/clientHistory'>History</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a>Welcome {{ username }}</a></li>
+      <li><a class="welcome">Welcome {{ username }}</a></li>
       <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
     </ul>
   </div>
 </nav>
 
 <body>
+<div class="container">
 <form action="/clientHomePage" method="POST">
-        <select name="job_type">
-		      {% for job_type in job_types %}
-		      	<option value="{{ job_type }}">{{ job_type }}</option>
-		      {% endfor %}
-        </select>
-        <input type="address" name="address" placeholder="Address">
-        <input type="description" name="description" placeholder="Description">
 
-        <input type="submit" value="Request worker">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><strong> Search for workers </strong> </div>
+                        <div class="panel-body">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Select job type</label>
+                                    <div class="col-sm-10">
+                                        <select name="job_type">
+                                            {% for job_type in job_types %}
+                                                <option value="{{ job_type }}">{{ job_type }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <br>              
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Address completion</label>
+                                    <div class="col-sm-10">
+                                        <input type="address" name="address" placeholder="Address">
+                                    </div>
+                                </div>
+                                <br>
+                                
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Description</label>
+                                    <div class="col-sm-10">
+                                        <input type="description" name="description" placeholder="Description">
+                                    </div>
+                                </div>
+                                
+                                <div class="col-sm-2" id="request-btn">
+                                    <input type="submit" value="Request worker">
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
 </form>
+</div>
 </body>
 </html>

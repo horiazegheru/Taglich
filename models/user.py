@@ -14,6 +14,6 @@ class User:
 		self.phone_nr = phone_nr
 		self.account_type = account_type
 		self.job_type = job_type
-
-	def __str__(self):
-		return str(self.id) + " " + self.username + " " + self.firstname + " " + self.lastname + " " + str(self.dob) + " " + self.description + " " + self.phone_nr + " " + self.account_type
+    
+	def change_password(self, new_password):
+		self.password = new_password

@@ -24,8 +24,9 @@ def index():
             return worker_home_page()
     else:
         return render_template('login.html')
+    
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if session.get('logged_in'):
         if session.get('account_type') == 'Client':
@@ -111,11 +112,41 @@ def register():
         return render_template('/register.html', **{'job_types': job_types})
 
 # neterminat
-@app.route('/changePassword', methods=['POST'])
+@app.route('/changePassword', methods=['GET', 'POST'])
 def change_password():
-    email = request.form['email']
-    password = request.form['password']
-    repassword = request.form['repassword']
+    if request.method == 'POST':
+        print("DADADA")
+        email = request.form['email']
+        password = request.form['current_password']
+        new_password = request.form['new_password']
+        re_new_password = request.form['re_password']
+        users = global_dict['users']
+        
+        print(email)
+        print(password)
+        print(new_password)
+        print(re_new_password)
+        
+        for i in range(len(users)):
+            current_user = users[i]
+
+            if current_user.email == email:
+                print("GASIT")
+                if current_user.password == password:
+                    print("PAROLA CURENTA CORECTA")
+                    if new_password == re_new_password:
+                        print("PAROLA NOUA CORECTA")
+                        users[i].change_password(new_password)
+                    else:
+                        print("PAROLA NOUA INCORECTA")
+                        return render_template('/changePassword.html')
+                else:
+                    print("PAROLA CURENTA INCORECTA")
+                    return render_template('/changePassword.html')
+        return index()
+    else:
+        return render_template('/changePassword.html')
+    
 
 # aici se adauga un job nou de catre client
 @app.route('/clientHomePage', methods=['GET', 'POST'])
@@ -221,6 +252,13 @@ def jobs_by_worker():
     jobs = [job for job in global_dict['jobs'] if job.worker_id == current_user_id]
     return render_template('/workerDisplayJobs.html', **{'username': session.get('username'),
                                                       'jobs': jobs})
+@app.route('/header.html', methods=['GET'])
+def header():
+    return render_template('header.html', **{'username': session.get('username')})
+    
+@app.route('/footer.html', methods=['GET'])
+def footer():
+    return render_template('footer.html')
 
 def get_current_user_id():
     for user in global_dict['users']:
